@@ -1,53 +1,50 @@
-#include <bits/stdc++.h>
+#include <iostream>
 
 using namespace std;
-
-int n, arr[100], unused[100];
-
-void print()
-{
-    for (int j = 1; j <= n; j++)
-    {
-        cout << arr[j];
-    }
-    cout << " ";
-}
-
-void backTracking(int i)
-{
-    for (int j = 1; j <= n; j++)
-    {
-        if (unused[j])
-        {
-            arr[i] = j;
-            unused[j] = 0;
-            if (i == n)
-            {
-                print();
-                break;
-            }
-            else
-            {
-                backTracking(i + 1);
-            }
-            unused[j] = 1;
-        }
-    }
-}
 
 int main()
 {
     int t;
     cin >> t;
-
     while (t--)
     {
+        int n;
         cin >> n;
-        for (int j = 1; j <= n; j++)
+        int a[n];
+        int flag = 1;
+        for (size_t i = 0; i < n; i++)
         {
-            unused[j] = 1;
+            cin >> a[i];
         }
-        backTracking(1);
+        int j = n - 2;
+        while (j > 0 && (a[j] > a[j + 1]))
+            j--;
+        // cout << j;
+        if (j == 0)
+            for (size_t i = 0; i < n; i++)
+            {
+                cout << i + 1 << " ";
+            }
+        else
+        {
+            int index = n - 1;
+            while (a[index] < a[j])
+                index--;
+            swap(a[index], a[j]);
+            int r = n - 1;
+            int l = j + 1;
+            while (l <= r)
+            {
+                swap(a[l], a[r]);
+                l++;
+                r--;
+            }
+            for (size_t i = 0; i < n; i++)
+            {
+                cout << a[i] << " ";
+            }
+        }
+
         cout << endl;
     }
 }
