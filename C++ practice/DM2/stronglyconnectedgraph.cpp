@@ -26,7 +26,7 @@ int BFS(int u)
     }
 }
 
-bool reInit()
+void reInit()
 {
     for (int i = 1; i <= n; i++)
     {

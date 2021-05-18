@@ -4,32 +4,32 @@ using namespace std;
 
 int main()
 {
-
-    int times;
-    cin >> times;
-    while (times--)
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--)
     {
-        stack<int> resStack;
-        string input;
-        cin >> input;
-        resStack.push(-1);
+        string s;
+        cin >> s;
+        stack<int> st;
         int res = 0;
-        for (int i = 0; i < input.length(); i++)
+        st.push(-1);
+        for (int i = 0; i < s.size(); i++)
         {
-            if (input[i] == '(')
+            if (s[i] == '(')
             {
-                resStack.push(i);
+                st.push(i);
             }
-            if (input[i] == ')')
+            else
             {
-                resStack.pop();
-                if (!resStack.empty())
+                st.pop();
+                if (st.size() > 0)
                 {
-                    res = max(res, i - resStack.top());
+                    res = max(res, i - st.top());
                 }
-                else if (resStack.size() == 0)
+                if (st.size() == 0)
                 {
-                    resStack.push(i);
+                    st.push(i);
                 }
             }
         }

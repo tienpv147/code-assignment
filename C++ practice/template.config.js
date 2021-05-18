@@ -4,7 +4,7 @@
  */
 module.exports = {
   // You can change the template path to another path
-  templateRootPath: "./",
+  templateRootPath: "./DSAA",
   // After copying the template file the `replaceFileTextFn` function is executed
   replaceFileTextFn: (fileText, templateName, utils) => {
     // @see https://www.npmjs.com/package/change-case
