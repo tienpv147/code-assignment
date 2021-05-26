@@ -2,53 +2,63 @@
 
 using namespace std;
 
-vector<int> ke[1001];
-bool quinn[1001];
-int truoc[1001];
-int m, n;
+int n, m;
+vector<int> adjacent[1001];
+bool isNavigated[1001];
+int front[1001];
+
 void DFS(int u, int v)
 {
-    if (quinn[v])
+    if (isNavigated[v])
         return;
-    quinn[u] = true;
-    for (int i = 0; i < ke[u].size(); i++)
+    isNavigated[u] = true;
+    for (int i = 0; i < adjacent[u].size(); i++)
     {
-        if (!quinn[ke[u][i]])
+        if (!isNavigated[adjacent[u][i]])
         {
-            truoc[ke[u][i]];
-            DFS(ke[u][i], v);
+            front[adjacent[u][i]];
+            DFS(adjacent[u][i], v);
         }
+    }
+}
+
+void clear()
+{
+    for (int i = 0; i < 1001; i++)
+    {
+        adjacent[i].clear();
+    }
+}
+
+void input()
+{
+    for (int i = 0; i < m; i++)
+    {
+        int u, v;
+        cin >> u >> v;
+        adjacent[u].push_back(v);
+        adjacent[v].push_back(u);
     }
 }
 
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--)
+    int times;
+    cin >> times;
+    while (times--)
     {
         cin >> n >> m;
-        for (int i = 0; i < 1001; i++)
+        clear();
+        input();
+        int question;
+        cin >> question;
+        while (question != 0)
         {
-            ke[i].clear();
-        }
-
-        for (int i = 0; i < m; i++)
-        {
-            int u, v;
-            cin >> u >> v;
-            ke[u].push_back(v);
-            ke[v].push_back(u);
-        }
-        int q;
-        cin >> q;
-        while (q--)
-        {
-            memset(quinn, false, sizeof(quinn));
+            memset(isNavigated, false, sizeof(isNavigated));
             int x, y;
             cin >> x >> y;
             DFS(x, y);
-            if (!quinn[y])
+            if (!isNavigated[y])
             {
                 cout << "NO";
             }
@@ -57,8 +67,8 @@ int main()
                 cout << "YES";
             }
             cout << endl;
+            question--;
         }
-
         cout << endl;
     }
 }
