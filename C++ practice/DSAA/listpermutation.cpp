@@ -25,6 +25,31 @@ void BackTrack(int i)
     }
     return;
 }
+
+// void backTracking(int i)
+// {
+//     for (int j = 1; j <= n; j++)
+//     {
+//         if (unused[i])
+//         {
+//             arr[i] = j;
+//             unused[j] = 0;
+//             if (i == n)
+//             {
+//                 for (int k = 1; k <= n; k++)
+//                 {
+//                     // cout << charMap[arr[k]];
+//                     cout << arr[k];
+//                 }
+//                 cout << endl;
+//             }
+//             else
+//                 backTracking(i + 1);
+//             unused[j] = 1;
+//         }
+//     }
+// }
+
 int main()
 {
     n = 5;

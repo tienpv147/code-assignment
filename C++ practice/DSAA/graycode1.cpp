@@ -52,6 +52,8 @@ int main()
             }
             cout << " ";
         }
+        queue<int> x;
+        x.pop();
         cout << endl;
     }
 }

@@ -3,7 +3,14 @@
 using namespace std;
 
 void solve() {
-
+    int m, n, k;
+    cin >> m >> n >> k;
+    long long int arr[m + n];
+    for (int i = 0; i < m + n; i++) {
+        cin >> arr[i];
+    }
+    sort(arr, arr + m + n);
+    cout << arr[k - 1] << endl;
 }
 
 int main()

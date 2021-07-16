@@ -41,8 +41,10 @@ void graph::init()
 int graph::check()
 {
     for (int i = 1; i <= n; i++)
+    {
         if (isNavigated[i] == false)
             return 0;
+    }
     return 1;
 }
 
@@ -51,12 +53,14 @@ void graph::dijkstra()
     d[s] = 0, road[s] = 0, isNavigated[s] = true;
     int stop = 1;
     for (int i = 1; i <= n; i++)
+    {
         if (a[s][i] > 0)
         {
             stop = 0;
             d[i] = a[s][i];
             front[i] = s;
         }
+    }
     if (!stop)
     {
         while (!check())
@@ -73,11 +77,8 @@ void graph::dijkstra()
                     }
                 }
             }
-            // {
-
             road[key] = road[front[key]] + a[front[key]][key];
             isNavigated[key] = true;
-            // }
             for (int i = 1; i <= n; i++)
             {
                 if (isNavigated[i] == false && a[key][i] > 0 && d[i] > d[key] + a[key][i])
@@ -96,8 +97,10 @@ void graph::out()
     {
         int k = i;
         if (!isNavigated[k])
+        {
             cout << "K/c " << s << " -> " << k << " = INF"
                  << ";" << endl;
+        }
         else
         {
             cout << "K/c " << s << " -> " << k << " = " << road[k] << ";\t" << k;
